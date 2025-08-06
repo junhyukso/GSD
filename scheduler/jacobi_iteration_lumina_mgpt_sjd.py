@@ -1139,6 +1139,10 @@ def renew_sampler(model_class):
             dtype = input_ids.dtype
 
             if self.prefix_token_sampler_scheme == 'speculative_jacobi':
+
+                if hasattr(self, 'SpecSamplerClass') != None :
+                    SpeculativeSampler = self.SpecSamplerClass
+                    
                 prefix_token_sampler = SpeculativeSampler(
                     generator=self.generator,
                     reject_sampling_relative_ids = -torch.ones(
