@@ -1,42 +1,58 @@
+# [ICCV 2025] Grouped Speculative Decoding for Autoregressive Image Generation
 
-## Download tokenizer
-Our model use chameleon(from META)'s image tokenizer. Please download it from
-`https://ai.meta.com/resources/models-and-libraries/chameleon-downloads/`
+![main](resources/main.png)
 
-and put it into
-`ckpts/chameleon/tokenizer`
+> **Official PyTorch implementation for the ICCV 2025 paper "Grouped Speculative Decoding for Autoregressive Image Generation (GSD)"**
 
-The folder structure should be :
+---
 
-The files
-`checklist.chk,text_tokenizer.json,vqgan.ckpt,vqgan.yaml`
+## Roadmap
 
-should be in 
-`ckpts/chameleon/tokenizer/`
+- [x] Release Arxiv Paper
+- [x] Release Initial Codebase
+- [ ] Release Colab tutorial
+- [ ] Apply to more AR models (e.g., Lumina mGPT 2)
 
+---
 
-## Install dependancies
+## Usage
 
-We recommend to use pytorch>=2.3.0
-```
-pip install transformers==4.48.1
-pip install sentencepiece
-pip install accelerate>=0.26.0
-pip install absl-py
-```
+### 1. Download Tokenizer
 
+Our model uses the image tokenizer from Meta's Chameleon. Please download the necessary files from [Meta's Chameleon homepage](https://ai.meta.com/resources/models-and-libraries/chameleon-downloads/).
 
-## Test our GSD
+Place the downloaded files into the `ckpts/chameleon/tokenizer/` directory. The final folder structure should look like this:
 
-```
-python test_GSD.py
-```
+    ckpts/
+    └── chameleon/
+        └── tokenizer/
+            ├── checklist.chk
+            ├── text_tokenizer.json
+            ├── vqgan.ckpt
+            └── vqgan.yaml
 
+### 2. Install Dependencies
 
-## Test the baseline (SJD; ICLR25)
-```
-python test_SJD.py
-```
+We recommend using **PyTorch >= 2.3.0**. Install the required packages with pip:
 
+    pip install transformers==4.48.1 sentencepiece accelerate>=0.26.0 absl-py
 
-Thank you!
+### 3. Run Tests
+
+#### Test our GSD model
+
+To generate images with our **GSD** model, run the following command. You can change the prompt directly within the `test_GSD.py` file.
+
+    python test_GSD.py
+
+#### Test the baseline (SJD)
+
+To compare the speed with the **SJD (ICLR 2025) baseline**, run this command:
+
+    python test_SJD.py
+
+---
+
+## Acknowledgements
+
+This implementation is heavily based on the official repository for SJD by tyshiwo1: [tyshiwo1/Accelerating-T2I-AR-with-SJD](https://github.com/tyshiwo1/Accelerating-T2I-AR-with-SJD).
